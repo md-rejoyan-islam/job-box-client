@@ -1,15 +1,17 @@
-import { Outlet } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+  const { user } = useSelector((state) => state.userState);
   return (
-    <div className="grid grid-cols-12">
-      <Sidebar />
-      <div className=" col-span-10">
-        <div className=" h-full max-w-7xl mx-auto">
-          <Outlet />
-        </div>
-      </div>
+    <div className="py-6 px-6">
+      <h1 className="text-5xl font-bold text-center">
+        Welcome to JobBox Dashboard
+      </h1>
+      <p className="text-center text-lg py-3">
+        {user?.role === "employer"
+          ? "You are an employer"
+          : "You are a candidate"}
+      </p>
     </div>
   );
 };

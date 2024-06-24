@@ -10,5 +10,8 @@ export default {
     },
   },
   // eslint-disable-next-line no-undef
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"), require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark", "cupcake"],
+  },
 };
