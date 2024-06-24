@@ -1,17 +1,11 @@
-import { Outlet, useLocation } from "react-router-dom";
-import Navbar from "./Navbar";
+import { Outlet } from "react-router-dom";
+import Navbar from "../../components/reusable/shared/Navbar";
 
 const Main = () => {
-  const { pathname } = useLocation();
-
   return (
     <div>
       <Navbar />
-      <div
-        className={` ${
-          pathname === "/" ? "max-w-[1600px] px-5" : "max-w-7xl"
-        } max-w-[1600px] mx-auto`}
-      >
+      <div className="px-4  max-container ">
         <Outlet />
       </div>
     </div>

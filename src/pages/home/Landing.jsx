@@ -74,8 +74,8 @@ const Landing = () => {
   }, []);
 
   return (
-    <div ref={el} className="h-screen">
-      <div className="max-w-2xl h-[80vh] rounded-b-full absolute top-0 left-1/2 -translate-x-1/2 overflow-hidden z-0">
+    <div ref={el} className="min-h-screen ">
+      <div className="max-w-2xl w-[80vw] h-[60vh] sm:h-[80vh] min-h-[420px] rounded-b-full absolute top-0 left-1/2 -translate-x-1/2 overflow-hidden z-0">
         <img
           id="hero1"
           src={hero1}
@@ -95,18 +95,23 @@ const Landing = () => {
           className="object-cover h-full w-full opacity-0"
         />
       </div>
-      <div className="h-full w-full flex items-center z-10 relative">
-        <div className="flex w-full">
-          <div className="w-1/2 flex flex-col items-start">
-            <h1 id="hero-title" className="heroElement font-bold text-7xl">
-              Find the perfect <br /> job for you
-            </h1>
-            <p id="hero-subtitle" className="mt-5 text-lg">
-              Search your career opportunity through 12,800 jobs
-            </p>
+      <div className="min-h-screen py-32 w-full flex  items-center z-10 relative">
+        <div className="flex w-full lg:flex-row flex-col-reverse gap-y-20">
+          <div className="lg:w-1/2 flex flex-col items-start">
+            <div className="max-w-[600px] lg:max-w-full mx-auto lg:mx-0 text-center lg:text-left">
+              <h1
+                id="hero-title"
+                className="heroElement font-bold text-3xl sm:text-4xl  md:text-[55px] md:leading-[60px] lg:text-[65px]  lg:leading-[65px]  xl:text-7xl "
+              >
+                Find the perfect <br className="hidden lg:block" /> job for you
+              </h1>
+              <p id="hero-subtitle" className="mt-5 text-lg">
+                Search your career opportunity through 12,800 jobs
+              </p>
+            </div>
             <div
               id="search-container"
-              className="bg-white rounded-full p-3 flex w-full max-w-xl overflow-hidden mt-5  shadow-lg"
+              className="bg-white rounded-full p-3 flex w-full max-w-xl mx-auto lg:mx-0 overflow-hidden mt-5  shadow-lg"
             >
               <input
                 className="flex-auto text-lg p-2 border-none outline-none focus:ring-0"
@@ -122,7 +127,7 @@ const Landing = () => {
                 <BiSearchAlt size="23" color="white" />
               </button>
             </div>
-            <div className="mt-16">
+            <div className="mt-16 max-w-[600px] lg:max-w-full mx-auto lg:mx-0">
               <h2 className="badge-container">Popular Search</h2>
               <div className="mt-3 max-w-xl flex flex-wrap  gap-3">
                 {keywords.map((item) => (
@@ -133,8 +138,8 @@ const Landing = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-between ">
-            <div className="statCard rounded-3xl shadow-2xl p-7 bg-white relative left-[80%]">
+          <div className="flex relative flex-col gap-y-3 justify-between box-border   ">
+            <div className="statCard rounded-3xl w-fit shadow-2xl p-4 sm:p-7   bg-white relative  lg:top-[-10%] left-[5%] lg:left-[80%]">
               <div>
                 <span className="text-2xl font-bold">319 </span>
                 <span>Job offers</span>
@@ -143,7 +148,7 @@ const Landing = () => {
                 In Business Development
               </p>
             </div>
-            <div className="statCard rounded-3xl shadow-2xl p-7 bg-white relative left-[60%]">
+            <div className="statCard w-fit rounded-3xl shadow-2xl p-4 sm:p-7 bg-white relative lg:top-[-12%] left-[30%] sm:right-[-50%] sm:left-[56%] md:left-[60%]">
               <div>
                 <span className="text-2xl font-bold">265 </span>
                 <span>Job offers</span>
@@ -152,7 +157,7 @@ const Landing = () => {
                 In Marketing & Communication
               </p>
             </div>
-            <div className="statCard rounded-3xl shadow-2xl p-7 bg-white relative left-[40%]">
+            <div className="statCard w-fit rounded-3xl shadow-2xl p-4 sm:p-7 bg-white relative lg:top-[-15%] left-[7%] sm:left-[12%] lg:left-[40%]">
               <div>
                 <span className="text-2xl font-bold">324 </span>
                 <span>Job offers</span>
