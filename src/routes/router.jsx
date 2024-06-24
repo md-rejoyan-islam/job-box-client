@@ -14,6 +14,7 @@ import CandidateDashboard from "../pages/candidateDashboard/CandidateDashboard";
 import EmployerRegistration from "../pages/register/EmployerRegistration";
 import CandidateRegistration from "../pages/register/CandidateRegistration";
 import AppliedJobs from "../pages/candidateDashboard/AppliedJobs";
+import PublicRoute from "./PublicRoute";
 
 const router = createBrowserRouter([
   {
@@ -34,11 +35,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        ),
       },
       {
         path: "/signup",
-        element: <Signup />,
+        element: (
+          <PublicRoute>
+            <Signup />
+          </PublicRoute>
+        ),
       },
       {
         path: "/register",

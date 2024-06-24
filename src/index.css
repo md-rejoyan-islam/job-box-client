@@ -44,4 +44,7 @@
   .max-container {
     @apply max-w-[1346px] mx-auto;
   }
+  .job-card:hover .job-card-btn {
+    @apply bg-blue-500 text-white transition-all duration-300;
+  }
 }

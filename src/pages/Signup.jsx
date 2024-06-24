@@ -3,6 +3,8 @@ import loginImage from "../assets/login.svg";
 import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useUserRegisterMutation } from "../features/auth/AuthApi";
+import SmallLoader from "../components/reusable/SmallLoader";
+import LoginWithGoogle from "../components/reusable/LoginWithGoogle";
 
 const Signup = () => {
   const { handleSubmit, register, control, reset } = useForm();
@@ -82,7 +84,7 @@ const Signup = () => {
                   className="font-bold text-white py-3 rounded-md bg-primary w-full disabled:bg-gray-300 disabled:cursor-not-allowed"
                   disabled={disabled}
                 >
-                  {isLoading ? "Loading..." : "Sign up"}
+                  {isLoading ? <SmallLoader /> : "Sign up"}
                 </button>
               </div>
               <div>
@@ -95,6 +97,9 @@ const Signup = () => {
                     Login
                   </span>
                 </p>
+              </div>
+              <div className="relative !mt-8">
+                <LoginWithGoogle />
               </div>
             </div>
           </form>

@@ -62,7 +62,7 @@ const Navbar = () => {
               </>
             ) : (
               <Link
-                className="border border-black px-2 py-1 rounded-full hover:border-primary hover:text-white hover:bg-primary hover:px-4 transition-all "
+                className="bg-blue-500 text-[17px] py-[6px] px-3 rounded-md text-white "
                 to="/login"
               >
                 Login
@@ -75,7 +75,7 @@ const Navbar = () => {
           <div
             className={`${
               isOpen
-                ? "block absolute top-0 h-screen z-[10]  bg-black/50"
+                ? "block absolute top-0 h-screen z-[10]  bg-black/75"
                 : "hidden"
             } sm:hidden w-screen -ml-4 `}
           ></div>
@@ -93,7 +93,7 @@ const Navbar = () => {
           <div
             className={` ${
               isOpen ? "translate-x-0 " : "translate-x-full"
-            }  fixed z-[10] top-0  h-full  transition-transform duration-700   border-none     flex  justify-end  w-full left-0`}
+            }  fixed z-[10] top-0  h-full  transition-transform duration-300   border-none     flex  justify-end  w-full left-0`}
           >
             <div
               className={`w-[60%] relative  p-6 text-center  bg-white/85 h-full flex transition-transform duration-500 ease-out justify-evenly items-center flex-col `}
@@ -143,7 +143,7 @@ const Navbar = () => {
                   </>
                 ) : (
                   <Link
-                    className="border border-black px-2 py-1 rounded-full hover:border-primary hover:text-white hover:bg-primary hover:px-4 transition-all "
+                    className="bg-blue-500 text-[17px] py-[6px] px-3 rounded-md text-white "
                     to="/login"
                   >
                     Login

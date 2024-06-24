@@ -1,7 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
-import Loading from "../components/reusable/Loading";
-import { useIsLoggedInQuery } from "../features/auth/AuthApi";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
 const PrivateRoute = ({ children }) => {
   const { pathname } = useLocation();
@@ -13,6 +12,10 @@ const PrivateRoute = ({ children }) => {
   }
 
   return children;
+};
+
+PrivateRoute.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default PrivateRoute;

@@ -2,26 +2,21 @@ import { useForm } from "react-hook-form";
 
 import { useNavigate } from "react-router-dom";
 import loginImage from "../assets/login.svg";
-import google from "../assets/google.png";
-import {
-  useLoginWithGoogleMutation,
-  useUserLoginMutation,
-} from "../features/auth/AuthApi";
+
+import { useUserLoginMutation } from "../features/auth/AuthApi";
+import SmallLoader from "../components/reusable/SmallLoader";
+import LoginWithGoogle from "../components/reusable/LoginWithGoogle";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
   const [userLogin, { isLoading, isSuccess }] = useUserLoginMutation();
-  const [googleLogin, {}] = useLoginWithGoogleMutation();
 
   const onSubmit = (data) => {
     userLogin({ email: data.email, password: data.password });
   };
 
-  const handleGoogleLogin = () => {
-    googleLogin();
-  };
   return (
     <div className="flex h-full items-center justify-center md:justify-normal py-8 gap-x-4">
       <div className="basis-1/2 hidden md:block">
@@ -57,14 +52,14 @@ const Login = () => {
                   type="submit"
                   className="font-bold text-white py-3 rounded-md bg-primary w-full"
                 >
-                  {isLoading ? "Loading..." : "Login"}
+                  {isLoading ? <SmallLoader /> : "Login"}
                 </button>
               </div>
               <div>
                 <p>
                   Don&apos;t have an account?{" "}
                   <span
-                    className="text-primary hover:underline cursor-pointer"
+                    className="text-primary underline hover:underline cursor-pointer"
                     onClick={() => navigate("/signup")}
                   >
                     Sign up
@@ -72,18 +67,7 @@ const Login = () => {
                 </p>
               </div>
               <div className="relative !mt-8">
-                <button
-                  type="button"
-                  className="font-bold text-white  rounded-md  w-full flex  items-center  border border-blue-500 bg-blue-500 hover:bg-blue-600"
-                  onClick={handleGoogleLogin}
-                >
-                  <figure className="h-full py-2.5   bg-white px-3 rounded-l-md">
-                    <img src={google} className="w-7 " alt="Google" />
-                  </figure>
-                  <span className="block  text-white flex-1 h-full">
-                    Sign in with Google
-                  </span>
-                </button>
+                <LoginWithGoogle />
               </div>
             </div>
           </form>
