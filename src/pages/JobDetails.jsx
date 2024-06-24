@@ -32,6 +32,7 @@ const JobDetails = () => {
     responsibilities,
     overview,
     queries,
+    employer,
   } = data?.data || {};
 
   if (isLoading) {
@@ -43,7 +44,9 @@ const JobDetails = () => {
     const data = {
       user: user?._id,
       job: id,
+      employer: employer,
     };
+
     apply(data);
   };
 

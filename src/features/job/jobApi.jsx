@@ -45,6 +45,12 @@ const jobApi = jobSlice.injectEndpoints({
       }),
       invalidatesTags: ["Job"],
     }),
+    getJobsByEmployerId: builder.query({
+      query: (id) => ({
+        url: `/apply/employer/${id}`,
+        method: "GET",
+      }),
+    }),
   }),
   // userRegister: builder.mutation({
   //   query: (data) => ({
@@ -63,4 +69,5 @@ export const {
   useGetJobByIdQuery,
   useGetAppliedJobsQuery,
   useAskQuestionMutation,
+  useGetJobsByEmployerIdQuery,
 } = jobApi;

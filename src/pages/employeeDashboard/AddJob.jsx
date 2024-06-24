@@ -30,6 +30,8 @@ const AddJob = () => {
   } = useFieldArray({ control, name: "requirements" });
 
   const onSubmit = (data) => {
+    data.employer = user._id;
+
     addJob(data);
   };
 

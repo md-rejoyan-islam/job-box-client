@@ -16,6 +16,8 @@ import CandidateRegistration from "../pages/register/CandidateRegistration";
 import AppliedJobs from "../pages/candidateDashboard/AppliedJobs";
 import PublicRoute from "./PublicRoute";
 import DashboardSidebar from "../layout/dashboard/DashboardSidebar";
+import EmployerAllJob from "../pages/employeeDashboard/EmployerAllJob";
+import AllApplicants from "../pages/employeeDashboard/AllApplicants";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +105,14 @@ const router = createBrowserRouter([
       {
         path: "employer",
         element: <EmployerDashboard />,
+      },
+      {
+        path: "employer/all-job",
+        element: <EmployerAllJob />,
+      },
+      {
+        path: "employer/all-applicants",
+        element: <AllApplicants />,
       },
       {
         path: "candidate",

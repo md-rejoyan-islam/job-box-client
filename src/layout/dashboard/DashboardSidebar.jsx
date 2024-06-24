@@ -8,14 +8,13 @@ function DashboardSidebar() {
   const employerMenu = [
     { name: "Home", link: "" },
     { name: "Add Job", link: "add-job" },
-    { name: "Applicants", link: "applicants" },
-    { name: "Profile", link: "profile" },
+    { name: "All Job", link: "employer/all-job" },
+    { name: "Applicants", link: "employer/all-applicants" },
   ];
   const candidateMenu = [
     { name: "Home", link: "" },
-    { name: "Jobs", link: "jobs" },
+    { name: "My Apply", link: "jobs" },
     { name: "My Jobs", link: "candidate/my-jobs" },
-    { name: "Profile", link: "profile" },
   ];
 
   return (

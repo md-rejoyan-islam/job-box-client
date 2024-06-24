@@ -4,7 +4,6 @@ import JobCard from "./JobCard";
 
 const Jobs = () => {
   const { data, isLoading } = useGetAllJobsQuery();
-  console.log(data);
 
   return (
     <div className="py-3 border-t">
@@ -16,16 +15,8 @@ const Jobs = () => {
       </div>
       <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-5 mt-5">
         {data?.data?.map((job, index) => (
-          // <JobCard jobData={job} key={index} />
-          <JobCard key={index} />
+          <JobCard key={index} data={job} />
         ))}
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
       </div>
     </div>
   );
