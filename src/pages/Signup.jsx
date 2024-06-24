@@ -32,14 +32,14 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex h-screen items-center pt-14">
-      <div className="w-1/2">
+    <div className="flex  items-center justify-center md:justify-normal py-8 gap-x-6 px-6">
+      <div className="w-1/2 hidden md:block">
         <img src={loginImage} className="h-full w-full" alt="" />
       </div>
-      <div className="w-1/2 grid place-items-center">
-        <div className="bg-[#FFFAF4] rounded-lg grid place-items-center p-10">
+      <div className="md:w-1/2 grid place-items-center">
+        <div className="bg-[#FFFAF4] w-[83vw] sm:w-fit sm:min-w-[360px] rounded-lg grid place-items-center p-7 shadow-md">
           <h1 className="mb-10 font-medium text-2xl">Sign up</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full">
             <div className="space-y-3">
               <div className="flex flex-col items-start">
                 <label htmlFor="email" className="ml-5">
@@ -49,35 +49,37 @@ const Signup = () => {
                   type="email"
                   name="email"
                   id="email"
+                  className="form-input rounded-md w-full"
+                  placeholder="Enter your email address"
                   {...register("email")}
                 />
               </div>
 
               <div className="flex flex-col items-start">
-                <label htmlFor="password" className="ml-5">
-                  Password
-                </label>
+                <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   name="password"
                   id="password"
+                  placeholder="Enter your password"
+                  className="form-input rounded-md w-full"
                   {...register("password")}
                 />
               </div>
               <div className="flex flex-col items-start">
-                <label htmlFor="confirm-password" className="ml-5">
-                  Confirm Password
-                </label>
+                <label htmlFor="confirm-password">Confirm Password</label>
                 <input
                   type="password"
                   id="confirm-password"
+                  placeholder="Confirm your password"
+                  className="form-input rounded-md w-full"
                   {...register("confirmPassword")}
                 />
               </div>
               <div className="!mt-8 ">
                 <button
                   type="submit"
-                  className="font-bold text-white py-3 rounded-full bg-primary w-full disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  className="font-bold text-white py-3 rounded-md bg-primary w-full disabled:bg-gray-300 disabled:cursor-not-allowed"
                   disabled={disabled}
                 >
                   {isLoading ? "Loading..." : "Sign up"}
