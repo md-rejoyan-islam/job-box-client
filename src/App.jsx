@@ -3,12 +3,12 @@ import "./App.css";
 import router from "./routes/router";
 import { ToastContainer } from "react-toastify";
 import { useIsLoggedInQuery } from "./features/auth/AuthApi";
-import Loading from "./components/reusable/Loading";
+import Loader from "./components/reusable/loader/Loader";
 
 function App() {
   const { isLoading } = useIsLoggedInQuery();
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <Loader />;
 
   return (
     <>

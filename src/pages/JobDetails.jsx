@@ -5,9 +5,9 @@ import {
   useApplyForJobMutation,
   useGetJobByIdQuery,
 } from "../features/job/jobApi";
-import Loading from "../components/reusable/Loading";
+import Loading from "../components/reusable/loader/Loader";
 import { useSelector } from "react-redux";
-import Chat from "./Chat";
+import Chat from "../components/job/Chat";
 const JobDetails = () => {
   const { id } = useParams();
 
@@ -113,7 +113,7 @@ const JobDetails = () => {
         </div>
       </div>
       <div className="col-span-12 lg:col-span-4">
-        <div className="rounded-xl border p-4 bg-primary/5 lg:bg-primary/10 lg:p-5 text-primary space-y-5">
+        <div className="rounded-xl border p-4 bg-primary/5  lg:p-5 text-primary space-y-5">
           <div>
             <p>Experience</p>
             <h1 className="font-semibold text-lg">{experience}</h1>
@@ -135,7 +135,7 @@ const JobDetails = () => {
             <h1 className="font-semibold text-lg">{location}</h1>
           </div>
         </div>
-        <div className="mt-5 rounded-xl  border p-4 bg-primary/5 lg:bg-primary/10 lg:p-5 text-primary space-y-5">
+        <div className="mt-5 rounded-xl  border p-4 bg-primary/5  lg:p-5 text-primary space-y-5">
           <div>
             <h1 className="font-semibold text-lg">{companyName}</h1>
           </div>
@@ -153,7 +153,7 @@ const JobDetails = () => {
           </div>
           <div>
             <p>Company Location</p>
-            <h1 className="font-semibold text-lg">Los Angeles</h1>
+            <h1 className="font-semibold text-lg">{data?.data?.location}</h1>
           </div>
           <div>
             <p>Website</p>

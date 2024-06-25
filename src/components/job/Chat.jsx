@@ -1,7 +1,7 @@
 import { BsArrowReturnRight, BsArrowRightShort } from "react-icons/bs";
 import { useSelector } from "react-redux";
-import { useAskQuestionMutation } from "../features/job/jobApi";
-import { useParams } from "react-router-dom";
+import { useAskQuestionMutation } from "../../features/job/jobApi";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 
@@ -9,9 +9,19 @@ function Chat({ queries }) {
   const { user } = useSelector((state) => state.userState);
   const [askQuestion] = useAskQuestionMutation();
   const { id } = useParams();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
   // ask question
   const handleAskQuestion = (e) => {
     e.preventDefault();
+
+    if (!user) {
+      return navigate("/login", {
+        state: { from: location },
+      });
+    }
 
     const question = e.target.question.value;
 
@@ -30,9 +40,9 @@ function Chat({ queries }) {
       <div>
         <h1 className="text-xl font-semibold text-primary mb-5">General Q&A</h1>
         <div className="text-primary my-2">
-          {queries?.map(({ question, email, reply, id }) => {
+          {queries?.map(({ question, email, reply }, index) => {
             return (
-              <div key={id}>
+              <div key={index}>
                 <small>{email}</small>
                 <p className="text-lg font-medium">{question}</p>
                 {reply?.map((item, index) => (
@@ -44,7 +54,7 @@ function Chat({ queries }) {
                   </p>
                 ))}
 
-                {user.role === "employer" && (
+                {user?.role === "employer" && (
                   <div className="flex gap-3 my-5">
                     <input
                       placeholder="Reply"

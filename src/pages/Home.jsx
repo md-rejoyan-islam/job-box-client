@@ -1,9 +1,9 @@
-import hero1 from "../../assets/hero-01.jpg";
-import hero2 from "../../assets/hero-02.jpg";
-import hero3 from "../../assets/hero-03.jpg";
+import hero1 from "../assets/hero-01.jpg";
+import hero2 from "../assets/hero-02.jpg";
+import hero3 from "../assets/hero-03.jpg";
 import { BiSearchAlt } from "react-icons/bi";
 import { gsap } from "gsap";
-import Badge from "../../components/reusable/Badge";
+import Badge from "../components/reusable/Badge";
 import { useGSAP } from "@gsap/react";
 
 const Home = () => {

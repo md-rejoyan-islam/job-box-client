@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import loginImage from "../assets/login.svg";
 
 import { useUserLoginMutation } from "../features/auth/AuthApi";
-import SmallLoader from "../components/reusable/SmallLoader";
+import SmallLoader from "../components/reusable/loader/SmallLoader";
 import LoginWithGoogle from "../components/reusable/LoginWithGoogle";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
 
   const [userLogin, { isLoading, isSuccess }] = useUserLoginMutation();
@@ -16,6 +18,14 @@ const Login = () => {
   const onSubmit = (data) => {
     userLogin({ email: data.email, password: data.password });
   };
+
+  useEffect(() => {
+    console.log(isSuccess);
+    if (isSuccess) {
+      reset();
+      toast.success("Successfully Login");
+    }
+  }, [isSuccess, reset, isLoading]);
 
   return (
     <div className="flex h-full items-center justify-center md:justify-normal py-8 gap-x-4">

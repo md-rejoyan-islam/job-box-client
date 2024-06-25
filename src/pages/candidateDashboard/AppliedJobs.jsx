@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import JobCard from "../../components/reusable/JobCard";
-import Loading from "../../components/reusable/Loading";
 import { useGetAppliedJobsQuery } from "../../features/job/jobApi";
+import Loader from "../../components/reusable/loader/Loader";
+import JobCard from "../../components/job/JobCard";
 
 const AppliedJobs = () => {
   const {
@@ -10,7 +10,7 @@ const AppliedJobs = () => {
   const { data, isLoading } = useGetAppliedJobsQuery(email);
 
   if (isLoading) {
-    return <Loading />;
+    return <Loader />;
   }
 
   return (

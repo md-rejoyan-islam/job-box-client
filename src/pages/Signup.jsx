@@ -3,8 +3,9 @@ import loginImage from "../assets/login.svg";
 import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useUserRegisterMutation } from "../features/auth/AuthApi";
-import SmallLoader from "../components/reusable/SmallLoader";
+import SmallLoader from "../components/reusable/loader/SmallLoader";
 import LoginWithGoogle from "../components/reusable/LoginWithGoogle";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const { handleSubmit, register, control, reset } = useForm();
@@ -14,6 +15,10 @@ const Signup = () => {
   const [disabled, setDisabled] = useState(true);
 
   const [userRegister, { isLoading, isSuccess }] = useUserRegisterMutation();
+
+  const onSubmit = (data) => {
+    userRegister(data);
+  };
 
   useEffect(() => {
     if (password && password === confirmPassword) {
@@ -26,12 +31,9 @@ const Signup = () => {
   useEffect(() => {
     if (isSuccess) {
       reset();
+      toast.success("Successfully register");
     }
   }, [isSuccess, reset]);
-
-  const onSubmit = (data) => {
-    userRegister(data);
-  };
 
   return (
     <div className="flex  items-center justify-center md:justify-normal py-8 gap-x-6 px-6">
@@ -44,9 +46,7 @@ const Signup = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="w-full">
             <div className="space-y-3">
               <div className="flex flex-col items-start">
-                <label htmlFor="email" className="ml-5">
-                  Email
-                </label>
+                <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   name="email"

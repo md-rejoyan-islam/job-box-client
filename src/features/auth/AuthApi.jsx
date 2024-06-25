@@ -30,11 +30,17 @@ export const authApi = createApi({
             email,
             password
           );
-
-          return { data: { email: result.user.email } };
+          if (result.user.email) {
+            await signOut(auth);
+          }
+          return { data: { email: null } };
         } catch (error) {
           return {
-            data: { error: error.message, status: error.code || 400 },
+            error: {
+              data: {
+                error: { message: error.message, status: error.code || 400 },
+              },
+            },
           };
         }
       },

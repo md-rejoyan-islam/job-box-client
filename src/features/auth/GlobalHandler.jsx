@@ -1,17 +1,17 @@
-import { isFulfilled, isRejected, isRejectedWithValue } from "@reduxjs/toolkit";
+import { isRejected, isRejectedWithValue } from "@reduxjs/toolkit";
 
 import { toast } from "react-toastify";
 
 export const rtkQueryGlobalLogger = () => (next) => (action) => {
   if (isRejected(action)) {
-    console.log(action);
     toast.error(action?.payload?.data.error.message);
-    // toast.error(action?.payload?.message);
   }
 
-  if (isFulfilled(action)) {
-    toast.success("Success");
-  }
+  // if (isFulfilled(action)) {
+  //   if (action.payload.success) {
+  //     toast.success(action.payload.message);
+  //   }
+  // }
 
   return next(action);
 };

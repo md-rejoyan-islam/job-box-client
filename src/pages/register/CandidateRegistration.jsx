@@ -4,7 +4,7 @@ import { FaRegIdCard, FaUserGraduate } from "react-icons/fa";
 import { useUserRegisterMutation } from "../../features/user/userApi";
 import { useSelector } from "react-redux";
 import { useGetCountriesQuery } from "../../features/others/otherApi";
-import Loading from "../../components/reusable/Loading";
+import Loading from "../../components/reusable/loader/Loader";
 
 const CandidateRegistration = () => {
   const { user } = useSelector((state) => state.userState);
