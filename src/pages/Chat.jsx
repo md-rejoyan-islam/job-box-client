@@ -1,9 +1,9 @@
 import { BsArrowReturnRight, BsArrowRightShort } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { useAskQuestionMutation } from "../features/job/jobApi";
-import PropsTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 function Chat({ queries }) {
   const { user } = useSelector((state) => state.userState);
@@ -85,8 +85,8 @@ function Chat({ queries }) {
   );
 }
 
-Chat.PropsTypes = {
-  queries: PropsTypes.array,
+Chat.propTypes = {
+  queries: PropTypes.array,
 };
 
 export default Chat;

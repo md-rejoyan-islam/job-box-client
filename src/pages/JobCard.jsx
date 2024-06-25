@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 
 function JobCard({ data }) {
   return (
-    <div className="rounded-md bg-[#f8faff] border hover:border-gray-300 hover:-translate-y-[2px] hover:bg-white transition-all duration-300 p-4 job-card">
+    <div
+      className={`rounded-md bg-[#f8faff] border hover:border-gray-300 hover:-translate-y-[2px] hover:bg-white transition-all duration-300 p-4 job-box-card box-card `}
+    >
       <div className="card-header">
         <h4 className="text-lg font-semibold">{data?.position}</h4>
         <div className="flex gap-x-4 gap-y-1 pt-3 text-sm items-center text-black/50 flex-wrap">

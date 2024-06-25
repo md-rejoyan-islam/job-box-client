@@ -5,6 +5,7 @@ import hero3 from "../../assets/hero-03.jpg";
 import { BiSearchAlt } from "react-icons/bi";
 import { gsap } from "gsap";
 import Badge from "../../components/reusable/Badge";
+import { useGSAP } from "@gsap/react";
 
 const Home = () => {
   const keywords = [
@@ -19,37 +20,31 @@ const Home = () => {
     "Tester",
   ];
 
-  const el = useRef();
-  const tl = useRef();
-  const tl2 = useRef();
+  useGSAP(() => {
+    gsap
+      .timeline()
+      .from("#hero-title", { delay: 0.2, y: 50, opacity: 0, duration: 0.3 })
+      .from("#hero-subtitle", { y: 50, opacity: 0, duration: 0.3 })
+      .from("#search-container", { y: 50, opacity: 0, duration: 0.3 })
+      .from("#search-button", {
+        x: -100,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2",
+      })
+      .from(".badge-container", { opacity: 0 })
+      .from(".badge-btn", { opacity: 0, y: 50, stagger: 0.1 });
 
-  useLayoutEffect(() => {
-    let cards = gsap.utils.toArray(".statCard");
+    const cards = gsap.utils.toArray(".statCard");
 
-    let ctx = gsap.context(() => {
-      tl.current = gsap
-        .timeline({ repeat: -1 })
-        .to("#hero1", { opacity: 1, duration: 2 })
-        .to("#hero1", { opacity: 0, display: "none", duration: 2, delay: 1 })
-        .to("#hero2", { opacity: 1, duration: 2 })
-        .to("#hero2", { opacity: 0, display: "none", duration: 2, delay: 1 })
-        .to("#hero3", { opacity: 1, duration: 2 })
-        .to("#hero3", { opacity: 0, display: "none", duration: 2, delay: 1 });
-
-      tl2.current = gsap
-        .timeline()
-        .from("#hero-title", { delay: 0.2, y: 50, opacity: 0, duration: 0.3 })
-        .from("#hero-subtitle", { y: 50, opacity: 0, duration: 0.3 })
-        .from("#search-container", { y: 50, opacity: 0, duration: 0.3 })
-        .from("#search-button", {
-          x: -100,
-          opacity: 0,
-          duration: 0.5,
-          ease: "power2",
-        })
-        .from(".badge-container", { opacity: 0 })
-        .from(".badge", { opacity: 0, y: 50, stagger: 0.1 });
-    }, el);
+    gsap
+      .timeline({ repeat: -1 })
+      .to("#hero1", { opacity: 1, duration: 2 })
+      .to("#hero1", { opacity: 0, display: "none", duration: 2, delay: 1 })
+      .to("#hero2", { opacity: 1, duration: 2 })
+      .to("#hero2", { opacity: 0, display: "none", duration: 2, delay: 1 })
+      .to("#hero3", { opacity: 1, duration: 2 })
+      .to("#hero3", { opacity: 0, display: "none", duration: 2, delay: 1 });
 
     const movement = (e) => {
       cards.forEach((card, index) => {
@@ -57,24 +52,19 @@ const Home = () => {
         const moveX = (e.pageX - window.innerWidth / 2) / depth;
         const moveY = (e.pageY - window.innerHeight / 2) / depth;
         index++;
-        gsap.to(card, {
-          x: moveX * index,
-          y: moveY * index,
-        });
+        gsap.to(card, { x: moveX * index, y: moveY * index });
       });
     };
 
     document.addEventListener("mousemove", movement);
 
     return () => {
-      ctx.revert();
-
       document.removeEventListener("mousemove", movement);
     };
-  }, []);
+  });
 
   return (
-    <div ref={el} className="min-h-screen ">
+    <div className="min-h-screen ">
       <div className="max-w-2xl w-[80vw] h-[60vh] sm:h-[80vh] min-h-[420px] rounded-b-full absolute top-0 left-1/2 -translate-x-1/2 overflow-hidden z-0">
         <img
           id="hero1"
@@ -128,10 +118,10 @@ const Home = () => {
               </button>
             </div>
             <div className="mt-16 max-w-[600px] lg:max-w-full mx-auto lg:mx-0">
-              <h2 className="badge-container">Popular Search</h2>
-              <div className="mt-3 max-w-xl flex flex-wrap  gap-3">
-                {keywords.map((item) => (
-                  <Badge key={item} className="badge">
+              <h2 className="badge-container font-semibold">Popular Search</h2>
+              <div className="max-w-xl  flex flex-wrap  gap-3">
+                {keywords?.map((item) => (
+                  <Badge key={item} className="badge-btn">
                     {item}
                   </Badge>
                 ))}

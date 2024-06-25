@@ -11,7 +11,7 @@ import Chat from "./Chat";
 const JobDetails = () => {
   const { id } = useParams();
 
-  const { user, role } = useSelector((state) => state.userState);
+  const { user } = useSelector((state) => state.userState);
 
   const [apply] = useApplyForJobMutation();
 
