@@ -1,1 +1,11 @@
+.drawer a,
+span {
+  background-color: transparent !important;
+}
+.drawer a:active {
+  color: blue !important;
+}
 
+a.active {
+  color: #3b82f6 !important;
+}

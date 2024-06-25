@@ -1,4 +1,3 @@
-import { useLayoutEffect, useRef } from "react";
 import hero1 from "../../assets/hero-01.jpg";
 import hero2 from "../../assets/hero-02.jpg";
 import hero3 from "../../assets/hero-03.jpg";
