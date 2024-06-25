@@ -35,7 +35,7 @@ function JobCard({ data }) {
             to={"/job-details/" + data._id}
             className="job-card-btn text-blue-500 bg-[#e0e6f7] rounded-md hover:bg-blue-500 py-2 px-3 text-sm hover:text-white"
           >
-            Apply Now
+            Details
           </Link>
         </div>
       </div>

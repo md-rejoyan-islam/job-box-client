@@ -1,6 +1,6 @@
 import { useForm, useWatch } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { FaChevronLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaRegIdCard, FaUserGraduate } from "react-icons/fa";
 import { useUserRegisterMutation } from "../../features/user/userApi";
 import { useSelector } from "react-redux";
 
@@ -15,7 +15,6 @@ const EmployerRegistration = () => {
     },
   });
   const term = useWatch({ control, name: "term" });
-  const navigate = useNavigate();
 
   const businessCategory = [
     "Automotive",
@@ -67,39 +66,64 @@ const EmployerRegistration = () => {
   };
 
   return (
-    <div className="pt-14">
-      <div
-        onClick={() => navigate("/register")}
-        className="cursor-pointer w-fit mt-5 flex items-center"
-      >
-        <FaChevronLeft />
-        <p>back</p>
+    <div className="pt-3 pb-6">
+      <div className="breadcrumbs text-sm">
+        <ul>
+          <li>
+            <Link to={"/register"}>
+              <FaRegIdCard className="text-[17px] mr-1" />
+              Register
+            </Link>
+          </li>
+          <li>
+            <Link to={"/register/employer"}>
+              <FaUserGraduate className="text-[17px] mr-1" />
+              Employer
+            </Link>
+          </li>
+        </ul>
       </div>
-      <div className="flex justify-center items-center overflow-auto p-10">
+      <div className="flex justify-center items-center overflow-auto p-3 sm:p-6 md:p-10">
         <form
-          className="bg-secondary/20 shadow-lg p-10 rounded-2xl flex flex-wrap gap-3 max-w-3xl justify-between"
+          className="bg-secondary/20 shadow-lg p-5 sm:p-8 md:p-10 rounded-2xl flex flex-wrap gap-3 max-w-3xl   border justify-between"
           onSubmit={handleSubmit(onSubmit)}
         >
           <h1 className="w-full text-2xl text-primary mb-5">Candidate</h1>
-          <div className="flex flex-col w-full max-w-xs">
+          <div className="flex flex-col w-full min-[854px]:max-w-xs">
             <label className="mb-2" htmlFor="firstName">
               First Name
             </label>
-            <input type="text" id="firstName" {...register("firstName")} />
+            <input
+              type="text"
+              id="firstName"
+              {...register("firstName")}
+              className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            />
           </div>
-          <div className="flex flex-col w-full max-w-xs">
+          <div className="flex flex-col w-full min-[854px]:max-w-xs">
             <label className="mb-2" htmlFor="lastName">
               Last Name
             </label>
-            <input type="text" id="lastName" {...register("lastName")} />
+            <input
+              type="text"
+              id="lastName"
+              {...register("lastName")}
+              className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            />
           </div>
-          <div className="flex flex-col w-full max-w-xs">
+          <div className="flex flex-col w-full min-[854px]:max-w-xs">
             <label className="mb-2" htmlFor="email">
               Email
             </label>
-            <input type="email" id="email" disabled {...register("email")} />
+            <input
+              type="email"
+              id="email"
+              disabled
+              {...register("email")}
+              className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            />
           </div>
-          <div className="flex flex-col w-full max-w-xs">
+          <div className="flex flex-col w-full min-[854px]:max-w-xs">
             <h1 className="mb-3">Gender</h1>
             <div className="flex gap-3">
               <div>
@@ -138,17 +162,26 @@ const EmployerRegistration = () => {
             </div>
           </div>
           <hr className="w-full mt-2 bg-black" />
-          <div className="flex flex-col w-full max-w-xs">
+          <div className="flex flex-col w-full min-[854px]:max-w-xs">
             <label className="mb-2" htmlFor="companyName">
               Company&apos;s name
             </label>
-            <input type="text" {...register("companyName")} id="companyName" />
+            <input
+              type="text"
+              {...register("companyName")}
+              id="companyName"
+              className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            />
           </div>
-          <div className="flex flex-col w-full max-w-xs">
+          <div className="flex flex-col w-full min-[854px]:max-w-xs">
             <label className="mb-3" htmlFor="employeeRange">
               Number of employee
             </label>
-            <select {...register("employeeRange")} id="employeeRange">
+            <select
+              {...register("employeeRange")}
+              id="employeeRange"
+              className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            >
               {employeeRange
                 .sort((a, b) => a.localeCompare(b))
                 .map((category, index) => (
@@ -159,11 +192,15 @@ const EmployerRegistration = () => {
             </select>
           </div>
 
-          <div className="flex flex-col w-full max-w-xs">
+          <div className="flex flex-col w-full min-[854px]:max-w-xs">
             <label className="mb-3" htmlFor="companyCategory">
               Company&apos;s Category
             </label>
-            <select {...register("companyCategory")} id="companyCategory">
+            <select
+              {...register("companyCategory")}
+              id="companyCategory"
+              className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            >
               {businessCategory
                 .sort((a, b) => a.localeCompare(b))
                 .map((category, index) => (
@@ -173,7 +210,7 @@ const EmployerRegistration = () => {
                 ))}
             </select>
           </div>
-          <div className="flex flex-col w-full max-w-xs">
+          <div className="flex flex-col w-full min-[854px]:max-w-xs">
             <label className="mb-2" htmlFor="roleInCompany">
               Your role in company
             </label>
@@ -181,11 +218,12 @@ const EmployerRegistration = () => {
               type="text"
               {...register("roleInCompany")}
               id="roleInCompany"
+              className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
 
           <div className="flex justify-between items-center w-full mt-3">
-            <div className="flex  w-full max-w-xs">
+            <div className="flex  w-full min-[854px]:max-w-xs items-center">
               <input
                 className="mr-3"
                 type="checkbox"
@@ -194,7 +232,11 @@ const EmployerRegistration = () => {
               />
               <label htmlFor="terms">I agree to terms and conditions</label>
             </div>
-            <button disabled={!term} className="btn" type="submit">
+            <button
+              disabled={!term}
+              className="rounded-md border  py-2 px-3 hover:text-white hover:scale-x-105 transition-all duration-100 hover:bg-blue-500 disabled:text-white disabled:bg-gray-300 disabled:hover:hidden "
+              type="submit"
+            >
               Submit
             </button>
           </div>

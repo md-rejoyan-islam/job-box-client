@@ -5,12 +5,14 @@ import { authApi } from "../features/auth/AuthApi";
 import authReducer from "../features/auth/AuthSlice";
 import { userSlice } from "../features/user/userSlice";
 import { jobSlice } from "../features/job/jobSlice";
+import { othersSlice } from "../features/others/otherSlice";
 
 export const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
     [userSlice.reducerPath]: userSlice.reducer,
     [jobSlice.reducerPath]: jobSlice.reducer,
+    [othersSlice.reducerPath]: othersSlice.reducer,
     userState: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -18,7 +20,8 @@ export const store = configureStore({
       rtkQueryGlobalLogger,
       authApi.middleware,
       userSlice.middleware,
-      jobSlice.middleware
+      jobSlice.middleware,
+      othersSlice.middleware
     ),
   devTools: import.meta.env.VITE_NODE_ENV === "development",
 });
