@@ -2,13 +2,14 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { FiTrash } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { useAddJobMutation } from "../../../features/job/jobApi";
+import { toast } from "react-toastify";
 
 const AddJob = () => {
   const { user } = useSelector((state) => state.userState);
 
-  const [addJob, { isLoading }] = useAddJobMutation();
+  const [addJob] = useAddJobMutation();
 
-  const { handleSubmit, register, control } = useForm({
+  const { handleSubmit, register, control, reset } = useForm({
     defaultValues: {
       companyName: user?.employer?.companyName,
     },
@@ -29,79 +30,123 @@ const AddJob = () => {
     remove: reqRemove,
   } = useFieldArray({ control, name: "requirements" });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     data.employer = user._id;
 
-    addJob(data);
+    for (let item in data) {
+      if (!data[item] && typeof data[item] === "string") {
+        return toast.warn(item + " is required!");
+      } else if (Array.isArray(data[item]) && data[item].length < 1) {
+        return toast.warn(item + " is required!");
+      }
+    }
+
+    const payload = await addJob(data);
+
+    if (payload?.data?.success) {
+      reset();
+      toast.success("Successfully added a new job.");
+    }
   };
 
   return (
-    <div className="flex justify-center items-center overflow-auto p-10">
+    <div className="flex justify-center items-center overflow-auto p-10 py-12 px-4 sm:px-6 md:px-10">
       <form
-        className="bg-secondary/20 shadow-lg p-10 rounded-2xl flex flex-wrap gap-3 max-w-3xl justify-between"
+        className="bg-secondary/20 shadow-lg p-5 sm:p-8 md:p-10 rounded-2xl flex flex-wrap gap-3 max-w-3xl   border justify-between"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="w-full text-2xl text-primary mb-5">
+        <h1 className="w-full text-xl font-semibold sm:text-3xl text-center text-primary mb-5">
           Add a new position
         </h1>
-        <div className="flex flex-col w-full max-w-xs">
+        <div className="flex flex-col w-full min-[854px]:max-w-[292px]">
           <label className="mb-2" htmlFor="position">
             Position
           </label>
-          <input type="text" id="position" {...register("position")} />
+          <input
+            type="text"
+            className="form-input rounded-md w-full"
+            id="position"
+            {...register("position")}
+          />
         </div>
-        <div className="flex flex-col w-full max-w-xs">
+        <div className="flex flex-col w-full min-[854px]:max-w-[292px]">
           <label className="mb-2" htmlFor="companyName">
             Company Name
           </label>
           <input
             disabled
-            className="cursor-not-allowed"
+            className="form-input rounded-md w-full cursor-not-allowed"
             type="text"
             id="companyName"
             {...register("companyName")}
           />
         </div>
-        <div className="flex flex-col w-full max-w-xs">
+        <div className="flex flex-col w-full min-[854px]:max-w-[292px]">
           <label className="mb-2" htmlFor="experience">
             Experience
           </label>
-          <input type="text" id="experience" {...register("experience")} />
+          <input
+            type="text"
+            className="form-input rounded-md w-full"
+            id="experience"
+            {...register("experience")}
+          />
         </div>
-        <div className="flex flex-col w-full max-w-xs">
+        <div className="flex flex-col w-full min-[854px]:max-w-[292px]">
           <label className="mb-2" htmlFor="workLevel">
             Work Level
           </label>
-          <input type="text" id="workLevel" {...register("workLevel")} />
+          <input
+            type="text"
+            className="form-input rounded-md w-full"
+            id="workLevel"
+            {...register("workLevel")}
+          />
         </div>
-        <div className="flex flex-col w-full max-w-xs">
+        <div className="flex flex-col w-full min-[854px]:max-w-[292px]">
           <label className="mb-2" htmlFor="employmentType">
             Employment Type
           </label>
           <input
             type="text"
             id="employmentType"
+            className="form-input rounded-md w-full"
             {...register("employmentType")}
           />
         </div>
-        <div className="flex flex-col w-full max-w-xs">
+        <div className="flex flex-col w-full min-[854px]:max-w-[292px]">
           <label className="mb-2" htmlFor="salaryRange">
             Salary Range
           </label>
-          <input type="text" id="salaryRange" {...register("salaryRange")} />
+          <input
+            type="text"
+            className="form-input rounded-md w-full"
+            id="salaryRange"
+            {...register("salaryRange")}
+          />
         </div>
         <div className="flex flex-col w-full">
           <label className="mb-2" htmlFor="location">
             Location
           </label>
-          <input type="text" id="location" {...register("location")} />
+          <input
+            type="text"
+            className="form-input rounded-md w-full"
+            id="location"
+            {...register("location")}
+          />
         </div>
         <hr className="w-full mt-2 bg-black" />
         <div className="flex flex-col w-full">
           <label className="mb-2" htmlFor="overview">
             Overview
           </label>
-          <textarea rows={8} {...register("overview")} id="overview" />
+          <textarea
+            rows={8}
+            className="form-input rounded-md w-full"
+            {...register("overview")}
+            id="overview"
+          />
         </div>
         <div className="flex flex-col w-full">
           <label className="mb-2">Skills</label>
@@ -109,9 +154,9 @@ const AddJob = () => {
             <div>
               {skillFields.map((item, index) => {
                 return (
-                  <div key={item.key} className="flex items-center gap-3 mb-5">
+                  <div key={index} className="flex items-center gap-3 mb-5">
                     <input
-                      className="!w-full"
+                      className="form-input rounded-md !w-full"
                       type="text"
                       {...register(`skills[${index}]`)}
                     />
@@ -146,9 +191,9 @@ const AddJob = () => {
             <div>
               {resFields.map((item, index) => {
                 return (
-                  <div key={item.key} className=" mb-5 flex items-center gap-3">
+                  <div key={index} className=" mb-5 flex items-center gap-3">
                     <input
-                      className="!w-full"
+                      className="form-input rounded-md !w-full"
                       type="text"
                       {...register(`responsibilities[${index}]`)}
                     />
@@ -183,9 +228,9 @@ const AddJob = () => {
             <div>
               {reqFields.map((item, index) => {
                 return (
-                  <div key={item.key} className=" mb-5 flex items-center gap-3">
+                  <div key={index} className=" mb-5 flex items-center gap-3">
                     <input
-                      className="!w-full"
+                      className="form-input rounded-md !w-full"
                       type="text"
                       {...register(`requirements[${index}]`)}
                     />
