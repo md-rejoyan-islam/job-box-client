@@ -15,7 +15,7 @@ function AllApplicants() {
       <div className="overflow-x-scroll">
         <table className="border w-full border-collapse text-nowrap overflow-hidden">
           <thead>
-            <tr className="border ">
+            <tr className="border bg-blue-500/5">
               <th className="py-1 px-3 border">#</th>
               <th className="py-1 px-3 border">Name</th>
               <th className="py-1 px-3 border">Email</th>
@@ -26,7 +26,7 @@ function AllApplicants() {
           </thead>
           <tbody>
             {data?.data.map((employer, index) => (
-              <tr key={index}>
+              <tr key={index} className="cursor-pointer hover:bg-black/5">
                 <td className="py-1 px-3 border">{index + 1}</td>
                 <td className="py-1 px-3 border">
                   {employer?.user?.firstName}

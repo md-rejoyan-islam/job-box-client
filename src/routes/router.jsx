@@ -7,8 +7,6 @@ import Signup from "../pages/main/Signup";
 import PrivateRoute from "./PrivateRoute";
 import AccountCreator from "../pages/main//register/AccountCreator";
 import AddJob from "../pages/dashboard/employeeDashboard/AddJob";
-import EmployerDashboard from "../pages/dashboard/employeeDashboard/EmployerDashboard";
-import CandidateDashboard from "../pages/dashboard/candidateDashboard/CandidateDashboard";
 import EmployerRegistration from "../pages/main/register/EmployerRegistration";
 import CandidateRegistration from "../pages/main/register/CandidateRegistration";
 import AppliedJobs from "../pages/dashboard/candidateDashboard/AppliedJobs";
@@ -106,20 +104,12 @@ const router = createBrowserRouter([
         element: <AddJob />,
       },
       {
-        path: "employer",
-        element: <EmployerDashboard />,
-      },
-      {
         path: "employer/all-job",
         element: <EmployerAllJob />,
       },
       {
         path: "employer/all-applicants",
         element: <AllApplicants />,
-      },
-      {
-        path: "candidate",
-        element: <CandidateDashboard />,
       },
       {
         path: "candidate/my-jobs",

@@ -30,7 +30,7 @@ function EmployerAllJob() {
       <div className="overflow-x-scroll">
         <table className="border w-full border-collapse text-nowrap overflow-hidden">
           <thead>
-            <tr className="border ">
+            <tr className="border bg-blue-500/5">
               <th className="py-1 px-3 border">#</th>
               <th className="py-1 px-3 border">Job Title</th>
               <th className="py-1 px-3 border">Experince</th>
