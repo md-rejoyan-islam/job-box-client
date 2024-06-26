@@ -1,8 +1,47 @@
-# React + Vite
+# JOBBOX CLIENT
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
 
-Currently, two official plugins are available:
+Welcome to JobBox Client, a client application for the JobBox project. This project aims to provide job seekers with a platform to search and apply for job opportunities.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+JobBox Client offers a range of features including:
+
+- **Feature 1**: User-friendly job search interface.
+- **Feature 2**: Ability to save favorite job listings.
+- **Feature 3**: Seamless job application process.
+
+## Getting Started
+
+### Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Prerequisite 1 (RTK Query)
+- Prerequisite 2 (REACT)
+- Prerequisite 3 (Tailwind CSS)
+- Prerequisite 4 (VITE)
+- Prerequisite 5 (GSAP Animation)
+
+### Installation
+
+Follow these steps to install JobBox Client:
+
+```bash
+git clone https://github.com/md-rejoyan-islam/job-box-client.git
+cd yourprojectdirectory
+npm install
+```
+
+## Useful Links
+
+Here are some useful links related to JobBox Client:
+
+- [JobBox Client Repository](https://github.com/md-rejoyan-islam/job-box-client)
+- [JobBox Server Repository](https://github.com/md-rejoyan-islam/job-box-server.git)
+- [JobBox Client Live Preview](https://github.com/md-rejoyan-islam/job-box-server.git)
+- [JobBox Server Live Preview](https://github.com/md-rejoyan-islam/job-box-server.git)
+- [JobBox Server Postman Documentation](https://github.com/md-rejoyan-islam/job-box-server.git)
+
+Feel free to explore these resources to learn more about JobBox Client and its dependencies.
