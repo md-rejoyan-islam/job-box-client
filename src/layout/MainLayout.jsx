@@ -3,12 +3,12 @@ import Navbar from "../components/reusable/shared/Navbar";
 
 const MainLayout = () => {
   return (
-    <div>
+    <>
       <Navbar />
-      <div className="px-4  max-container ">
+      <main className="px-4 max-container">
         <Outlet />
-      </div>
-    </div>
+      </main>
+    </>
   );
 };
 

@@ -102,7 +102,7 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "add-job",
+        path: "employer/add-job",
         element: <AddJob />,
       },
       {
