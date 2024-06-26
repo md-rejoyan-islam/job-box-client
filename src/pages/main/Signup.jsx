@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import loginImage from "../assets/login.svg";
+import loginImage from "../../assets/login.svg";
 import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useUserRegisterMutation } from "../features/auth/AuthApi";
-import SmallLoader from "../components/reusable/loader/SmallLoader";
-import LoginWithGoogle from "../components/reusable/LoginWithGoogle";
+import { useUserRegisterMutation } from "../../features/auth/AuthApi";
+import SmallLoader from "../../components/reusable/loader/SmallLoader";
+import LoginWithGoogle from "../../components/reusable/LoginWithGoogle";
 import { toast } from "react-toastify";
 
 const Signup = () => {

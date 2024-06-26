@@ -1,47 +1,72 @@
 import { useForm, useWatch } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FaRegIdCard, FaUserGraduate } from "react-icons/fa";
-import { useUserRegisterMutation } from "../../features/user/userApi";
+import { useUserRegisterMutation } from "../../../features/user/userApi";
 import { useSelector } from "react-redux";
-import { useGetCountriesQuery } from "../../features/others/otherApi";
-import Loading from "../../components/reusable/loader/Loader";
 
-const CandidateRegistration = () => {
+const EmployerRegistration = () => {
   const { user } = useSelector((state) => state.userState);
+
+  const [userRegister] = useUserRegisterMutation();
 
   const { handleSubmit, register, control } = useForm({
     defaultValues: {
       email: user?.email,
-      country: "Bangladesh",
     },
   });
   const term = useWatch({ control, name: "term" });
 
-  const [userRegister] = useUserRegisterMutation();
+  const businessCategory = [
+    "Automotive",
+    "Business Support & Supplies",
+    "Computers & Electronics",
+    "Construction & Contractors",
+    "Design Agency",
+    "Education",
+    "Entertainment",
+    "Food & Dining",
+    "Health & Medicine",
+    "Home & Garden",
+    "IT Farm",
+    "Legal & Financial",
+    "Manufacturing, Wholesale, Distribution",
+    "Merchants (Retail)",
+    "Miscellaneous",
+    "Personal Care & Services",
+    "Real Estate",
+    "Travel & Transportation",
+  ];
 
-  const { data: countries, isLoading } = useGetCountriesQuery();
+  const employeeRange = ["1 - 10", "11 - 50", "51 - 100", "Above 100"];
 
   const onSubmit = (values) => {
     const data = {
       ...values,
-      role: "candidate",
-      candidate: {
-        skills: values.skills,
-        experience: values.experience,
-        education: values.education,
-        country: values.country,
-        address: values.address,
-        city: values.city,
-        postcode: values.postcode,
+      role: "employer",
+      employer: {
+        companyName: values.companyName,
+        companyCategory: values.companyCategory,
+        employeeRange: values.employeeRange,
+        roleInCompany: values.roleInCompany,
       },
     };
-    userRegister(data);
+
+    // delete some data
+    delete data.companyName;
+    delete data.companyCategory;
+    delete data.employeeRange;
+    delete data.roleInCompany;
+
+    // user register
+    userRegister({
+      ...data,
+      applicants: [],
+      queries: [],
+    });
   };
 
-  if (isLoading) return <Loading />;
-
   return (
-    <div className="pt-2 px-1 pb-6">
+    <div className="pt-3 pb-6">
       <div className="breadcrumbs text-sm">
         <ul>
           <li>
@@ -51,9 +76,9 @@ const CandidateRegistration = () => {
             </Link>
           </li>
           <li>
-            <Link to={"/register/candidate"}>
+            <Link to={"/register/employer"}>
               <FaUserGraduate className="text-[17px] mr-1" />
-              Candidate
+              Employer
             </Link>
           </li>
         </ul>
@@ -136,63 +161,63 @@ const CandidateRegistration = () => {
               </div>
             </div>
           </div>
-          {/* <hr className="w-full mt-2 bg-black" /> */}
+          <hr className="w-full mt-2 bg-black" />
           <div className="flex flex-col w-full min-[854px]:max-w-xs">
-            <label className="mb-3" htmlFor="country">
-              Country
+            <label className="mb-2" htmlFor="companyName">
+              Company&apos;s name
+            </label>
+            <input
+              type="text"
+              {...register("companyName")}
+              id="companyName"
+              className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            />
+          </div>
+          <div className="flex flex-col w-full min-[854px]:max-w-xs">
+            <label className="mb-3" htmlFor="employeeRange">
+              Number of employee
             </label>
             <select
-              {...register("country")}
-              id="country"
-              defaultValue={
-                // bangladesh selected by default
-                countries?.length &&
-                countries?.find(
-                  (country) => country.name?.common === "Bangladesh"
-                )?.name?.common
-              }
+              {...register("employeeRange")}
+              id="employeeRange"
               className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             >
-              {countries?.length &&
-                [...countries]
-                  ?.sort((a, b) => a.name?.common.localeCompare(b.name?.common))
-                  ?.map(({ name }, index) => (
-                    <option key={index} value={name?.common}>
-                      {name?.common}
-                    </option>
-                  ))}
+              {employeeRange
+                .sort((a, b) => a.localeCompare(b))
+                .map((category, index) => (
+                  <option key={index} value={category}>
+                    {category}
+                  </option>
+                ))}
+            </select>
+          </div>
+
+          <div className="flex flex-col w-full min-[854px]:max-w-xs">
+            <label className="mb-3" htmlFor="companyCategory">
+              Company&apos;s Category
+            </label>
+            <select
+              {...register("companyCategory")}
+              id="companyCategory"
+              className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            >
+              {businessCategory
+                .sort((a, b) => a.localeCompare(b))
+                .map((category, index) => (
+                  <option key={index} value={category}>
+                    {category}
+                  </option>
+                ))}
             </select>
           </div>
           <div className="flex flex-col w-full min-[854px]:max-w-xs">
-            <label className="mb-2" htmlFor="address">
-              Street Address
+            <label className="mb-2" htmlFor="roleInCompany">
+              Your role in company
             </label>
             <input
               type="text"
-              {...register("address")}
-              id="address"
-              className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-            />
-          </div>
-          <div className="flex flex-col w-full min-[854px]:max-w-xs">
-            <label className="mb-2" htmlFor="city">
-              City
-            </label>
-            <input
-              type="text"
-              {...register("city")}
-              id="city"
-              className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-            />
-          </div>
-          <div className="flex flex-col w-full min-[854px]:max-w-xs">
-            <label className="mb-2" htmlFor="postcode">
-              Postal Code
-            </label>
-            <input
-              type="text"
-              {...register("postcode")}
-              id="postcode"
+              {...register("roleInCompany")}
+              id="roleInCompany"
               className="rounded-[4px] border border-gray-300 p-2 w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
@@ -221,4 +246,4 @@ const CandidateRegistration = () => {
   );
 };
 
-export default CandidateRegistration;
+export default EmployerRegistration;

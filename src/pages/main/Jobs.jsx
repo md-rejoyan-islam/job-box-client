@@ -1,5 +1,5 @@
-import { useGetAllJobsQuery } from "../features/job/jobApi";
-import JobCard from "../components/job/JobCard";
+import { useGetAllJobsQuery } from "../../features/job/jobApi";
+import JobCard from "../../components/job/JobCard";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 

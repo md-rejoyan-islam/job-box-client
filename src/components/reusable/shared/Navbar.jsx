@@ -21,7 +21,7 @@ const Navbar = () => {
       <nav
         className={`${
           pathname === "/" && "fixed z-[100] top-0"
-        } h-16 px-4  w-full border-b   bg-white/65 `}
+        } h-16 px-4  w-full border-b menu-bar   bg-white/65 `}
       >
         {/* horizontal menu  */}
         <ul className=" flex max-container  gap-x-6 h-full items-center">

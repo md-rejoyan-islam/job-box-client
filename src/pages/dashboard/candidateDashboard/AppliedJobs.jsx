@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { useGetAppliedJobsQuery } from "../../features/job/jobApi";
-import Loader from "../../components/reusable/loader/Loader";
-import JobCard from "../../components/job/JobCard";
+import { useGetAppliedJobsQuery } from "../../../features/job/jobApi";
+import Loader from "../../../components/reusable/loader/Loader";
+import JobCard from "../../../components/job/JobCard";
 
 const AppliedJobs = () => {
   const {

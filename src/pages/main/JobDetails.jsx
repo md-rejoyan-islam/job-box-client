@@ -1,13 +1,13 @@
-import { useParams } from "react-router-dom";
-import meeting from "../assets/meeting.jpg";
+import { Link, useParams } from "react-router-dom";
+import meeting from "../../assets/meeting.jpg";
 import { BsArrowRightShort } from "react-icons/bs";
 import {
   useApplyForJobMutation,
   useGetJobByIdQuery,
-} from "../features/job/jobApi";
-import Loading from "../components/reusable/loader/Loader";
+} from "../../features/job/jobApi";
+import Loading from "../../components/reusable/loader/Loader";
 import { useSelector } from "react-redux";
-import Chat from "../components/job/Chat";
+import Chat from "../../components/job/Chat";
 const JobDetails = () => {
   const { id } = useParams();
 
@@ -35,6 +35,25 @@ const JobDetails = () => {
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (!data) {
+    return (
+      <div className="h-[calc(100vh-67px)] w-full text-center grid place-content-center px-8">
+        <div>
+          <h3 className="text-8xl text-center  text-red-500 font-semibold">
+            404
+          </h3>
+          <p className="text-lg py-4">Invalid job URL</p>
+          <Link
+            to={"/jobs"}
+            className="bg-violet-500 text-white py-2 px-5 rounded-md"
+          >
+            Back
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   // handle apply for job

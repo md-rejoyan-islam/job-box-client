@@ -1,9 +1,9 @@
-import hero1 from "../assets/hero-01.jpg";
-import hero2 from "../assets/hero-02.jpg";
-import hero3 from "../assets/hero-03.jpg";
+import hero1 from "../../assets/hero-01.jpg";
+import hero2 from "../../assets/hero-02.jpg";
+import hero3 from "../../assets/hero-03.jpg";
 import { BiSearchAlt } from "react-icons/bi";
 import { gsap } from "gsap";
-import Badge from "../components/reusable/Badge";
+import Badge from "../../components/reusable/Badge";
 import { useGSAP } from "@gsap/react";
 
 const Home = () => {
@@ -116,8 +116,10 @@ const Home = () => {
                 <BiSearchAlt size="23" color="white" />
               </button>
             </div>
-            <div className="mt-16 max-w-[600px] lg:max-w-full mx-auto lg:mx-0">
-              <h2 className="badge-container font-semibold">Popular Search</h2>
+            <div className="mt-16  max-w-[600px] lg:max-w-full mx-auto lg:mx-0">
+              <h2 className="badge-container font-semibold mb-2">
+                Popular Search
+              </h2>
               <div className="max-w-xl  flex flex-wrap  gap-3">
                 {keywords?.map((item) => (
                   <Badge key={item} className="badge-btn">

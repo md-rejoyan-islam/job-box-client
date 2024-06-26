@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import candidate from "../../assets/candidate.svg";
-import employer from "../../assets/employer.svg";
+import candidate from "../../../assets/candidate.svg";
+import employer from "../../../assets/employer.svg";
 
 const AccountCreator = () => {
   const navigate = useNavigate();

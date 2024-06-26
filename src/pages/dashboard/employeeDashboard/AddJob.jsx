@@ -1,7 +1,7 @@
 import { useFieldArray, useForm } from "react-hook-form";
 import { FiTrash } from "react-icons/fi";
 import { useSelector } from "react-redux";
-import { useAddJobMutation } from "../../features/job/jobApi";
+import { useAddJobMutation } from "../../../features/job/jobApi";
 
 const AddJob = () => {
   const { user } = useSelector((state) => state.userState);

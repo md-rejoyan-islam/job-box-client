@@ -1,11 +1,18 @@
-.drawer a,
+/* .menu-bar .drawer a,
 span {
   background-color: transparent !important;
-}
+} */
 .drawer a:active {
   color: blue !important;
+  background-color: transparent !important;
 }
 
-a.active {
+.menu-bar a.active {
   color: #3b82f6 !important;
+  background-color: transparent !important;
+}
+
+.dashboard-drawer a.active {
+  background-color: #cfbfdd !important;
+  color: initial !important;
 }

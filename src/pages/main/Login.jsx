@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 
 import { useNavigate } from "react-router-dom";
-import loginImage from "../assets/login.svg";
+import loginImage from "../../assets/login.svg";
 
-import { useUserLoginMutation } from "../features/auth/AuthApi";
-import SmallLoader from "../components/reusable/loader/SmallLoader";
-import LoginWithGoogle from "../components/reusable/LoginWithGoogle";
+import { useUserLoginMutation } from "../../features/auth/AuthApi";
+import SmallLoader from "../../components/reusable/loader/SmallLoader";
+import LoginWithGoogle from "../../components/reusable/LoginWithGoogle";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 

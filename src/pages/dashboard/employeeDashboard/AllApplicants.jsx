@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useGetJobsByEmployerIdQuery } from "../../features/job/jobApi";
+import { useGetJobsByEmployerIdQuery } from "../../../features/job/jobApi";
 import { useSelector } from "react-redux";
 
 function AllApplicants() {

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useGetAllJobsQuery } from "../../features/job/jobApi";
+import { useGetAllJobsQuery } from "../../../features/job/jobApi";
 
 function EmployerAllJob() {
   const { data } = useGetAllJobsQuery();

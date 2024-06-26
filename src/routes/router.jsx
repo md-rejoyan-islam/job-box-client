@@ -1,28 +1,30 @@
 import { createBrowserRouter } from "react-router-dom";
-import Main from "../layout/main/Main";
-import Home from "../pages/Home";
-import Jobs from "../pages/Jobs";
-import JobDetails from "../pages/JobDetails";
-import Login from "../pages/Login";
-import Signup from "../pages/Signup";
+import Home from "../pages/main/Home";
+import Jobs from "../pages/main/Jobs";
+import JobDetails from "../pages/main/JobDetails";
+import Login from "../pages/main/Login";
+import Signup from "../pages/main/Signup";
 import PrivateRoute from "./PrivateRoute";
-import AccountCreator from "../pages/register/AccountCreator";
-import Dashboard from "../layout/dashboard/Dashboard";
-import AddJob from "../pages/employeeDashboard/AddJob";
-import EmployerDashboard from "../pages/employeeDashboard/EmployerDashboard";
-import CandidateDashboard from "../pages/candidateDashboard/CandidateDashboard";
-import EmployerRegistration from "../pages/register/EmployerRegistration";
-import CandidateRegistration from "../pages/register/CandidateRegistration";
-import AppliedJobs from "../pages/candidateDashboard/AppliedJobs";
+import AccountCreator from "../pages/main//register/AccountCreator";
+import AddJob from "../pages/dashboard/employeeDashboard/AddJob";
+import EmployerDashboard from "../pages/dashboard/employeeDashboard/EmployerDashboard";
+import CandidateDashboard from "../pages/dashboard/candidateDashboard/CandidateDashboard";
+import EmployerRegistration from "../pages/main/register/EmployerRegistration";
+import CandidateRegistration from "../pages/main/register/CandidateRegistration";
+import AppliedJobs from "../pages/dashboard/candidateDashboard/AppliedJobs";
 import PublicRoute from "./PublicRoute";
-import DashboardSidebar from "../layout/dashboard/DashboardSidebar";
-import EmployerAllJob from "../pages/employeeDashboard/EmployerAllJob";
-import AllApplicants from "../pages/employeeDashboard/AllApplicants";
+import EmployerAllJob from "../pages/dashboard/employeeDashboard/EmployerAllJob";
+import AllApplicants from "../pages/dashboard//employeeDashboard/AllApplicants";
+import NotFound from "../pages/NotFound";
+import Dashboard from "../pages/dashboard/Dashboard";
+import DashboardLayout from "../layout/DashboardLayout";
+import MainLayout from "../layout/MainLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main />,
+    element: <MainLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",
@@ -88,9 +90,10 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    errorElement: <NotFound />,
     element: (
       <PrivateRoute>
-        <DashboardSidebar />
+        <DashboardLayout />
       </PrivateRoute>
     ),
     children: [
